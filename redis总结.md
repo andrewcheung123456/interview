@@ -1,11 +1,11 @@
 # redis总结
 
 ## redis支持的数据类型
-* string
-* list
-* set
-* sorted set
-* hash
+* string，底层是类似java的ArrayList
+* list，底层是类似java的LinkedList
+* set，底层是类似java的HashSet
+* sorted set,底层是通过跳表实现
+* hash,底层是类似java的HashMap
 
 ## redis集群方案
 * 主从模式
@@ -62,9 +62,14 @@
 
 ## redis持久化方式
 * aof
-* rdb
+* rdb默认
 
 ## aof持久化
 * aof模式通过保存redis服务器所执行的写命令来记录数据
 * aof开启参数appendonly=yes
 * aof写入策略参数appendfsync，always每次执行写入aof,everysec每秒写入aof,no交给操作系统写入aof
+
+## rdb持久化
+* 压缩的二进制文件
+* rdb创建有两种：手动执行SAVE或BGSAVE、满足配置条件进行rdb持久化时
+* save seconds changes,seconds秒内服务器发生changes次数据修改，则进行一次RDB
