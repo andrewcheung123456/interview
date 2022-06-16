@@ -24,10 +24,6 @@
 * volatile-random：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，随机移除某个key
 * volatile-ttl：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，有更早过期时间的key优先移除
 
-## redis持久化方式
-* aof
-* rdb
-
 ## redis缓存击穿概念和解决方案
 * 概念：缓存的一条热点key瞬间失效，请求到数据库
 * 解决方案：使用互斥锁、热点数据永不过期
@@ -64,3 +60,11 @@
 * key经过多个hash函数计算之后的值存储到bit数组中
 * 不在bit数组的一定不存在，在bit数组的可能存在
 
+## redis持久化方式
+* aof
+* rdb
+
+## aof持久化
+* aof模式通过保存redis服务器所执行的写命令来记录数据
+* aof开启参数appendonly=yes
+* aof写入策略参数appendfsync，always每次执行写入aof,everysec每秒写入aof,no交给操作系统写入aof
