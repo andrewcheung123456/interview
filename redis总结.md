@@ -59,3 +59,8 @@
 * type: key的类型
 * del: 删除key
 * setnx: 设置key
+
+## 布隆过滤器
+* key经过多个hash函数计算之后的值存储到bit数组中
+* 不在bit数组的一定不存在，在bit数组的可能存在
+
