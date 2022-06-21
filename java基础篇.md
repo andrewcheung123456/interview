@@ -1,4 +1,4 @@
-# java基础总结
+# java基础篇
 
 ### JDK、JRE、JVM的区别
 * JDK是java开发工具包，JDK包括JRE，类库，java工具

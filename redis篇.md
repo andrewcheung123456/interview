@@ -1,4 +1,4 @@
-# redis总结
+# redis篇
 
 ## redis支持的数据类型
 * string，底层是类似java的ArrayList
