@@ -96,11 +96,22 @@
 ### String s = new String("xyz");创建了几个String Object
 * 2个、常量池中有一个字符串对象，new的时候，在堆内存中创建了一个字符串对象
 
-### java集合Collection包括那些
-* List，包含ArrayList、LinkedList、Vector、Stack
-* Set，包含HashSet、LinkedHashSet、TreeSet
+### Collection包括那些
+* List
+* Set
 
-### java集合Map包括哪些
+### List包括哪些
+* ArrayList
+* LinkedList
+* Vector
+* Stack
+
+### Set包括哪些
+* HashSet
+* LinkedHashSet
+* TreeSet
+
+### Map包括哪些
 * HashTable
 * HashMap
 * TreeMap
@@ -110,4 +121,3 @@
 ### HashMap为什么是线程不安全的
 * 在JDK1.7中，当并发执行扩容操作时会造成环形链和数据丢失的问题
 * 在JDK1.8中，在并发执行put操作时会发生数据覆盖的问题
-* 
