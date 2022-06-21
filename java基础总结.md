@@ -88,9 +88,16 @@
 * 子类非静态代码块
 * 子类构造函数
 
+### String、StringBuilder、StringBuffer区别
+* String是不可变字符串，StringBuilder、StringBuffer是可变字符串
+* 运行速度StringBuilder>StringBuffer>String
+* StringBuilder非线程安全，StringBuffer线程安全
+
+### String s = new String("xyz");创建了几个String Object
+* 2个、常量池中有一个字符串对象，new的时候，在堆内存中创建了一个字符串对象
+
 ### java集合Collection包括那些
 * List，包含ArrayList、LinkedList、Vector、Stack
-* Queue，包含PriorityQueue|、ArrayDequeue
 * Set，包含HashSet、LinkedHashSet、TreeSet
 
 ### java集合Map包括哪些
@@ -100,3 +107,7 @@
 * Properties
 * LinkedHashMap
 
+### HashMap为什么是线程不安全的
+* 在JDK1.7中，当并发执行扩容操作时会造成环形链和数据丢失的问题
+* 在JDK1.8中，在并发执行put操作时会发生数据覆盖的问题
+* 
