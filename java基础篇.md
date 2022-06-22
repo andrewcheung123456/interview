@@ -118,10 +118,12 @@
 * Properties
 * LinkedHashMap
 
+### 注解
+* @Retention定义在哪一级别可用，在源代码、class类文件或者运行时
+* @Documented生成文档信息的时候保留注解
+* @Target用于描述注解的使用范围
+* @Repeatable表示注解可以重复使用
+
 ### HashMap为什么是线程不安全的
 * 在JDK1.7中，当并发执行扩容操作时会造成环形链和数据丢失的问题
 * 在JDK1.8中，在并发执行put操作时会发生数据覆盖的问题
-
-### 注解
-
-### synchronized
