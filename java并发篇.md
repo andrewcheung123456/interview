@@ -46,3 +46,26 @@
 * STOP线程池立即关闭，放弃缓存队列的任务并且终止正在处理的任务
 * TIDYING线程池处理整理状态，SHUTDOWN->TIDYING，STOP->TIDYING
 * TERMINATED线程终止状态
+
+### synchronized实现同步
+* 对于普通同步方法，锁是当前实例对象，基于ACC_SYNCHRONIZED实现，本质还是monitor监视器同步
+* 对于静态同步方法，锁是当前类的class对象，基于ACC_SYNCHRONIZED实现，本质还是monitor监视器同步
+* 对于同步方法块，锁是synchronized括号里配置的对象，基于monitorenter和monitorexit实现
+
+### synchronized锁状态升级过程
+* 无锁状态
+* 偏向锁状态，一个线程竞争
+* 轻量级锁状态，多个线程竞争
+* 重量级锁状态，多个线程当自旋超过一定的次数，或者部分线程在持有锁，另一部分线程在自旋，又有其他线程来获取锁
+
+### 对象包含哪些
+* 对象头
+* 实例数据
+* 对齐填充
+
+### 对象头包含哪些
+* MarkWord，存储对象的hashCode、GC分代年龄、锁状态标志、线程持有的锁、偏向线程ID等
+* Class Metadata Address，类型指针指向对象的元数据
+* Array Length，数组长度(如果是数组)
+
+### 
