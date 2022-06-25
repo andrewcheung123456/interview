@@ -55,8 +55,8 @@
 ### synchronized锁状态升级过程
 * 无锁状态
 * 偏向锁状态，一个线程竞争
-* 轻量级锁状态，多个线程竞争
-* 重量级锁状态，多个线程当自旋超过一定的次数，或者部分线程在持有锁，另一部分线程在自旋，又有其他线程来获取锁
+* 轻量级锁状态，两个线程竞争
+* 重量级锁状态，自旋超过一定的次数，或者一个线程在持有锁，一个在自旋，又有第三个来访时
 
 ### 对象包含哪些
 * 对象头
@@ -65,7 +65,52 @@
 
 ### 对象头包含哪些
 * MarkWord，存储对象的hashCode、GC分代年龄、锁状态标志、线程持有的锁、偏向线程ID等
-* Class Metadata Address，类型指针指向对象的元数据
+* Klass Pointer，类型指针指向对象的元数据
 * Array Length，数组长度(如果是数组)
 
-### 
+### 线程的5种状态
+* New新建状态
+* Runnable就绪状态
+* Running运行状态
+* Blocked阻塞状态
+* Dead死亡状态
+
+### synchronized的对象锁的指针指向monitor对象的起始地址，monitor是由ObjectMonitor实现，ObjectMonitor包含哪些变量
+* _count = 0; 记录数
+* _recursions = 0; 锁的重入次数
+* _owner = NULL; 指向持有ObjectMonitor对象的线程
+* _WaitSet = NULL; 调用wait后，线程会被加入到_WaitSet
+* _EntryList = NULL ; 等待获取锁的线程，会被加入到该列表
+
+### JMM模型
+* 线程
+* 工作内存
+* 主内存
+
+### JMM并发相关的三个特性
+* 原子性
+* 可见性
+* 有序性
+
+### 缓存一致性解决方案
+* 总线加lock锁
+* 缓存一致性协议
+
+### 缓存一致性协议
+多个cpu从主内存读取同一个数据到各自的高速缓存中，其中当某个cpu修改了缓存里的数据，该数据马上同步回主内存，其他cpu通过总线嗅探机制，可以感知到数据的变化从而将自己缓存的数据失效。
+
+### volatile的特性
+* 可见性
+* 不保证原子性
+* 禁止指令重排序
+
+### happen-before原则
+* 单线程happen-before原则：在同一个线程中，书写在前面的操作happen-before后面的操作。
+* 锁的happen-before原则：同一个锁的unlock操作happen-before此锁的lock操作。
+* volatile的happen-before原则： 对一个volatile变量的写操作happen-before对此变量的任意操作。
+* happen-before的传递性原则： 如果A操作 happen-before B操作，B操作happen-before C操作，那么A操作happen-before C操作。
+* 线程启动的happen-before原则：同一个线程的start方法happen-before此线程的其它方法。
+* 线程中断的happen-before原则：对线程interrupt方法的调用happen-before被中断线程的检测到中断发送的代码。
+* 线程终结的happen-before原则：线程中的所有操作都happen-before线程的终止检测。
+* 对象创建的happen-before原则：一个对象的初始化完成先于他的finalize方法调用。
+
